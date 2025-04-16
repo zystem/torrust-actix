@@ -1,0 +1,108 @@
+log_level = "info"
+log_console_interval = 10
+
+[tracker_config]
+api_key = "MyApiKey"
+whitelist_enabled = false
+blacklist_enabled = false
+keys_enabled = false
+keys_cleanup_interval = 60
+users_enabled = false
+request_interval = 1800
+request_interval_minimum = 1800
+peers_timeout = 2700
+peers_cleanup_interval = 900
+peers_cleanup_threads = 256
+total_downloads = 0
+swagger = false
+prometheus_id = "torrust_actix"
+
+[sentry_config]
+enabled = false
+dsn = ""
+debug = false
+sample_rate = 1.0
+max_breadcrumbs = 100
+attach_stacktrace = true
+send_default_pii = false
+traces_sample_rate = 1.0
+
+[database]
+engine = "sqlite3"
+path = "sqlite://data.db"
+persistent = false
+persistent_interval = 60
+insert_vacant = false
+remove_action = false
+update_completed = true
+update_peers = false
+
+[database_structure.torrents]
+table_name = "torrents"
+column_infohash = "infohash"
+bin_type_infohash = true
+column_seeds = "seeds"
+column_peers = "peers"
+column_completed = "completed"
+
+[database_structure.whitelist]
+table_name = "whitelist"
+column_infohash = "infohash"
+bin_type_infohash = true
+
+[database_structure.blacklist]
+table_name = "blacklist"
+column_infohash = "infohash"
+bin_type_infohash = true
+
+[database_structure.keys]
+table_name = "keys"
+column_hash = "hash"
+bin_type_hash = true
+column_timeout = "timeout"
+
+[database_structure.users]
+table_name = "users"
+id_uuid = true
+column_uuid = "uuid"
+column_id = "id"
+column_key = "key"
+bin_type_key = true
+column_uploaded = "uploaded"
+column_downloaded = "downloaded"
+column_completed = "completed"
+column_updated = "updated"
+column_active = "active"
+
+[[http_server]]
+enabled = true
+bind_address = "0.0.0.0:6969"
+real_ip = "X-Real-IP"
+keep_alive = 60
+request_timeout = 15
+disconnect_timeout = 15
+max_connections = 25000
+threads = 2
+ssl = false
+ssl_key = ""
+ssl_cert = ""
+tls_connection_rate = 256
+
+[[udp_server]]
+enabled = false
+bind_address = "0.0.0.0:6969"
+threads = 2
+
+[[api_server]]
+enabled = true
+bind_address = "0.0.0.0:8080"
+real_ip = "X-Real-IP"
+keep_alive = 60
+request_timeout = 30
+disconnect_timeout = 30
+max_connections = 25000
+threads = 2
+ssl = false
+ssl_key = ""
+ssl_cert = ""
+tls_connection_rate = 256

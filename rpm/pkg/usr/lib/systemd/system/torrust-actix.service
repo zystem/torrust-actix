@@ -1,0 +1,13 @@
+[Unit]
+Description=torrust-actix torrent tracker
+Documentation=https://github.com/Power2All/torrust-actix
+
+[Service]
+Type=simple
+User=torrust-actix
+WorkingDirectory=/opt/torrust-actix
+ExecStart=/opt/torrust-actix/torrust-actix
+Restart=on-failure
+
+[Install]
+WantedBy=network-online.target
